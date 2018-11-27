@@ -1,5 +1,5 @@
 var chai = require('chai');
-var web3 = require('../index');
+var web4 = require('../index');
 var BigNumber = require('bignumber.js');
 var testMethod = require('./helpers/test.method.js');
 
@@ -39,13 +39,13 @@ var tests = [{
     formattedArgs: ['0x2dbab4c0612bf9caf4c195085547dc0612bf9caf4c1950855', '0x2'],
     result: txResult,
     formattedResult: formattedTxResult,
-    call: 'eth_getTransactionByBlockHashAndIndex'
+    call: 'tim_getTransactionByBlockHashAndIndex'
 },{
     args: [436, 11],
     formattedArgs: ['0x1b4', '0xb'],
     result: txResult,
     formattedResult: formattedTxResult,
-    call: 'eth_getTransactionByBlockNumberAndIndex'
+    call: 'tim_getTransactionByBlockNumberAndIndex'
 }];
 
 testMethod.runTests('eth', method, tests);

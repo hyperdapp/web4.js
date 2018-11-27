@@ -1,52 +1,52 @@
 var chai = require('chai');
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
-var Web3 = require('../lib/web3');
-var web3 = new Web3();
+var web4 = require('../lib/web4');
+var web4 = new web4();
 
 
 var tests = [{
-    properties: [new web3._extend.Property({
+    properties: [new web4._extend.Property({
         name: 'gasPrice',
-        getter: 'eth_gasPrice',
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        getter: 'tim_gasPrice',
+        outputFormatter: web4._extend.formatters.outputBigNumberFormatter
     })]
 },{
-    methods: [new web3._extend.Method({
+    methods: [new web4._extend.Method({
         name: 'getBalance',
-        call: 'eth_getBalance',
+        call: 'tim_getBalance',
         params: 2,
-        inputFormatter: [web3._extend.utils.toAddress, web3._extend.formatters.inputDefaultBlockNumberFormatter],
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        inputFormatter: [web4._extend.utils.toAddress, web4._extend.formatters.inputDefaultBlockNumberFormatter],
+        outputFormatter: web4._extend.formatters.outputBigNumberFormatter
     })]
 },{
     property: 'admin',
-    properties: [new web3._extend.Property({
+    properties: [new web4._extend.Property({
         name: 'gasPrice',
-        getter: 'eth_gasPrice',
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        getter: 'tim_gasPrice',
+        outputFormatter: web4._extend.formatters.outputBigNumberFormatter
     })],
-    methods: [new web3._extend.Method({
+    methods: [new web4._extend.Method({
         name: 'getBalance',
-        call: 'eth_getBalance',
+        call: 'tim_getBalance',
         params: 2,
-        inputFormatter: [web3._extend.utils.toAddress, web3._extend.formatters.inputDefaultBlockNumberFormatter],
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        inputFormatter: [web4._extend.utils.toAddress, web4._extend.formatters.inputDefaultBlockNumberFormatter],
+        outputFormatter: web4._extend.formatters.outputBigNumberFormatter
     })]
 }];
 
-describe('web3', function () {
+describe('web4', function () {
     describe('_extend', function () {
         tests.forEach(function (test, index) {
             it('test no: ' + index, function () {
-                web3._extend(test);
+                web4._extend(test);
 
 
                 if(test.properties)
                     test.properties.forEach(function(property){
 
                         var provider = new FakeHttpProvider();
-                        web3.setProvider(provider);
+                        web4.setProvider(provider);
                         provider.injectResult('');
                         provider.injectValidation(function (payload) {
                             assert.equal(payload.jsonrpc, '2.0');
@@ -54,20 +54,20 @@ describe('web3', function () {
                         });
 
                         if(test.property) {
-                            assert.isObject(web3[test.property][property.name]);
-                            assert.isFunction(web3[test.property]['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
+                            assert.isObject(web4[test.property][property.name]);
+                            assert.isFunction(web4[test.property]['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
                         } else {
-                            assert.isObject(web3[property.name]);
-                            assert.isFunction(web3['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);                        
+                            assert.isObject(web4[property.name]);
+                            assert.isFunction(web4['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);                        
                         }
                     });
 
                 if(test.methods)
                     test.methods.forEach(function(property){
                         if(test.property)
-                            assert.isFunction(web3[test.property][property.name]);
+                            assert.isFunction(web4[test.property][property.name]);
                         else
-                            assert.isFunction(web3[property.name]);
+                            assert.isFunction(web4[property.name]);
                     });
 
             });

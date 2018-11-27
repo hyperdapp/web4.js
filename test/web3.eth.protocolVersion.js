@@ -1,14 +1,14 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
-var web3 = new Web3();
+var web4 = require('../index');
+var web4 = new web4();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 var method = 'protocolVersion';
 
 var tests = [{
     result: ['1234'],
-    call: 'eth_'+ method
+    call: 'tim_'+ method
 }];
 
 describe('eth.protocolVersion', function () {
@@ -18,7 +18,7 @@ describe('eth.protocolVersion', function () {
 
                 // given
                 var provider = new FakeHttpProvider();
-                web3.setProvider(provider);
+                web4.setProvider(provider);
                 provider.injectResult(test.result);
                 provider.injectValidation(function (payload) {
                     assert.equal(payload.jsonrpc, '2.0');
@@ -27,7 +27,7 @@ describe('eth.protocolVersion', function () {
                 });
 
                 // when
-                var result = web3.eth[method];
+                var result = web4.eth[method];
 
                 // then
                 assert.deepEqual(test.result, result);

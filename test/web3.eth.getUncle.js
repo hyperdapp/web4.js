@@ -1,6 +1,6 @@
 var chai = require('chai');
-var Web3 = require('../index');
-var web3 = new Web3();
+var web4 = require('../index');
+var web4 = new web4();
 var BigNumber = require('bignumber.js');
 var testMethod = require('./helpers/test.method.js');
 
@@ -118,19 +118,19 @@ var tests = [{
     formattedArgs: ['0x47d33b27bb249a2dbab4c0612bf9caf4c1950855', '0x2'],
     result: blockResult,
     formattedResult: formattedBlockResult,
-    call: 'eth_getUncleByBlockHashAndIndex'
+    call: 'tim_getUncleByBlockHashAndIndex'
 },{
     args: [436, 1],
     formattedArgs: ['0x1b4', '0x1'],
     result: blockResult,
     formattedResult: formattedBlockResult,
-    call: 'eth_getUncleByBlockNumberAndIndex'
+    call: 'tim_getUncleByBlockNumberAndIndex'
 },{
     args: [436, 1, true],
     formattedArgs: ['0x1b4', '0x1'],
     result: blockResultWithTx,
     formattedResult: formattedBlockResultWithTx,
-    call: 'eth_getUncleByBlockNumberAndIndex'
+    call: 'tim_getUncleByBlockNumberAndIndex'
 }];
 
 testMethod.runTests('eth', method, tests);

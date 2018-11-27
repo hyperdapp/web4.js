@@ -3,7 +3,7 @@
  * a. Signing a message by an Ethereum user
  * b. Finding the account address using which the message was signed
  */
-var Web3 = require('../index.js');
+var web4 = require('../index.js');
 var ethURL = ""; 
 var defaultAc = ""; 
 var defaultAcPWD=""; 
@@ -16,7 +16,7 @@ var sigContractInstance = null;
 var strAbi='[{"constant":true,"inputs":[{"name":"hash","type":"bytes32"},{"name":"v","type":"uint8"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"}],"name":"verify","outputs":[{"name":"returnAddress","type":"address"}],"payable":false,"type":"function"}]';
 var signMessage=""; 
 
-var ethWeb3 = null;
+var ethweb4 = null;
 
 function setContractAddress(conAddress){
     sigContractAddress = conAddress;
@@ -39,15 +39,15 @@ function setMessage(msg){
 }
 
 function initializeEthereumConnection(){
-   if(ethWeb3!=null && ethWeb3.isConnected()==true)  {
+   if(ethweb4!=null && ethweb4.isConnected()==true)  {
     return true;
   }
   
-  ethWeb3 = new Web3(new Web3.providers.HttpProvider(ethURL));
+  ethweb4 = new web4(new web4.providers.HttpProvider(ethURL));
   
-  if(ethWeb3.isConnected()==true){
+  if(ethweb4.isConnected()==true){
       if(defaultAc==''){
-        defaultAc=ethWeb3.eth.accounts[1];
+        defaultAc=ethweb4.eth.accounts[1];
       }
       return true;
   }
@@ -57,7 +57,7 @@ function initializeEthereumConnection(){
 
 function unlockAccount(acAddress){
   if(acAddress!=undefined && acAddress!=null){
-    var state=ethWeb3.personal.unlockAccount(defaultAc, defaultAcPWD, 100);
+    var state=ethweb4.personal.unlockAccount(defaultAc, defaultAcPWD, 100);
     return state;
   }
 
@@ -67,11 +67,11 @@ function unlockAccount(acAddress){
 
 function initializeContract(){
     initializeEthereumConnection();
-    if(ethWeb3.isConnected()==false){
+    if(ethweb4.isConnected()==false){
         return;
     }  
     var abi = JSON.parse(strAbi);
-    var contract = ethWeb3.eth.contract(abi);
+    var contract = ethweb4.eth.contract(abi);
 
     sigContractInstance =  contract.at(sigContractAddress)  
 }
@@ -79,14 +79,14 @@ function initializeContract(){
 function signMessage(message){
 
     initializeEthereumConnection();
-    if(ethWeb3.isConnected()==false){
+    if(ethweb4.isConnected()==false){
         return false;
     }
     
     var state=unlockAccount(defaultAc);
     
     const msg = new Buffer(message);
-    const sig = ethWeb3.eth.sign(defaultAc, '0x' + msg.toString('hex'));
+    const sig = ethweb4.eth.sign(defaultAc, '0x' + msg.toString('hex'));
 
     return sig;
 }
@@ -94,7 +94,7 @@ function signMessage(message){
 function verifySignedByAc(message, sig){
     initializeEthereumConnection();
 
-    if(ethWeb3.isConnected()==false){
+    if(ethweb4.isConnected()==false){
         return false;
     }
     initializeContract();
@@ -105,7 +105,7 @@ function verifySignedByAc(message, sig){
     // So while finding who signed it we need to prefix this part 
     const prefix = new Buffer("\x19Ethereum Signed Message:\n");
     const msg = new Buffer(message);
-    const prefixedMsg = ethWeb3.sha3(
+    const prefixedMsg = ethweb4.sha3(
     Buffer.concat([prefix, new Buffer(String(msg.length)), msg]).toString('utf8')
     );
 
@@ -118,7 +118,7 @@ function verifySignedByAc(message, sig){
 
 function splitSig(sig) {
   return {
-    v: ethWeb3.toDecimal('0x' + sig.slice(130, 132)),
+    v: ethweb4.toDecimal('0x' + sig.slice(130, 132)),
     r: sig.slice(0, 66),
     s: sig.slice(66, 130)
   }
