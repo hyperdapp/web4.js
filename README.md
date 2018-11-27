@@ -21,7 +21,7 @@ You need to run a local Ethereum node to use this library.
   - [Meteor.js](#meteorjs)
   - [As a Browser module](#as-a-browser-module)
 - [Usage](#usage)
-  - [Migration from Web3.js to Web4.js](#migration)
+  - [Migration from Web3.js to Web4.js](#Migration from web3 to web4)
 - [Contribute!](#contribute)
   - [Requirements](#requirements)
   - [Building (gulp)](#building-gulp)
