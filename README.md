@@ -35,19 +35,19 @@ You need to run a local Ethereum node to use this library.
 ### Node.js
 
 ```bash
-npm install web4
+npm install web4js
 ```
 
 ### Yarn
 
 ```bash
-yarn add web4
+yarn add web4js
 ```
 
 ### Meteor.js
 
 ```bash
-meteor add hyperdapp:web4
+meteor add hyperdapp:web4js
 ```
 
 ### As a Browser module
@@ -61,7 +61,7 @@ CDN
 Bower
 
 ```bash
-bower install web4
+bower install web4js
 ```
 
 Component

@@ -1,7 +1,7 @@
 {
   "name": "web4",
   "namespace": "hyperdapp",
-  "version": "0.17.0-alpha",
+  "version": "0.20.7",
   "description": "Theos & Hyperdapp Compatible JavaScript API",
   "main": [
     "./dist/web4.js",
