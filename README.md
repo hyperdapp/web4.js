@@ -106,15 +106,15 @@ var balance = web4.eth.getBalance(coinbase);
 
 You can find more examples in the [`example`](https://github.com/hyperdapp/web4.js/tree/master/example) directory.
 
-### Migration from 0.13.0 to 0.14.0
+### Migration from web3 to web4
 
-web4.js version 0.14.0 supports [multiple instances of the web4](https://github.com/hyperdapp/web4.js/issues/297) object.
-To migrate to this version, please follow the guide:
+web4.js is derived from web3.js of Ethereum [web3](https://github.com/ethereum/web3.js) .
+To migrate to this framework, please follow the guide:
 
-```diff
--var web4 = require('web4');
-+var web4 = require('web4');
-+var web4 = new web4();
+```
++Run/Connect to Theos Blockchain;
++Deploy Smart Contract;
++Install Smart Contract on Hyperdapp;
 ```
 ## Contribute!
 
