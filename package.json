@@ -1,7 +1,7 @@
 {
   "name": "web4js",
   "namespace": "hyperdapp",
-  "version": "0.20.7",
+  "version": "0.20.8.1",
   "description": "Theos & Hyperdapp JavaScript API, middleware to talk to a theos node over RPC",
   "main": "./index.js",
   "directories": {
